@@ -1,0 +1,18 @@
+version: '3.5'
+
+services:
+        nginx-base-auth:
+                container_name: nginx-base-auht
+                image: farex/nginx-base-auth
+                environment:
+                        HTPASSWD: ${HTPASSWD:-admin:$apr1$hMx9OtjB$SDHELwIlGk5BFXrwvF9o61}
+                        FORWARD_HOST: ${FORWARD_HOST:-consul}
+                        FORWARD_PORT: ${FORWARD_PORT:-8500}
+                ports:
+                        - 8080:80
+        consul:
+                container_name: consul
+                image: consul
+                volumes:
+                        - ./data:/data
+                command: "consul agent -server -bootstrap-expect 1 -data-dir /data -ui -bind=0.0.0.0 -client=0.0.0.0"
