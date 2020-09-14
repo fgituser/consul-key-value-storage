@@ -1,6 +1,6 @@
 ## Consul-key-value-storage
 
-Running consul as a keystore.   
+Running consul as a key value store.   
 The consul API is accessed by HTTP Basic Authentication NGINX
 http://localhost:8080
    
